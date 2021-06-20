@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         textViewExpression.append(number)
+        textViewResult.text = calculateExpression()
     }
 
     private fun operatorButtonClicked(operator: String) {
@@ -98,7 +100,38 @@ class MainActivity : AppCompatActivity() {
         hasOperator = true
     }
 
+    private fun calculateExpression(): String {
+        val expressions = textViewExpression.text.split(" ")
+        if (!hasOperator.not() || expressions.size != 3) {
+            return ""
+        } else if (expressions[0].isNumber().not() || expressions[2].isNumber().not()) {
+            return ""
+        }
+
+        val exp1 = expressions[0].toBigInteger()
+        val exp2 = expressions[2].toBigInteger()
+        val op = expressions[1]
+
+        return when (op) {
+            "+" -> (exp1 + exp2).toString()
+            "-" -> (exp1 - exp2).toString()
+            "*" -> (exp1 * exp2).toString()
+            "/" -> (exp1 / exp2).toString()
+            "%" -> (exp1 % exp2).toString()
+            else -> ""
+        }
+    }
+
     private fun buttonClearClicked(view: View) {}
     private fun buttonHistoryClicked(view: View) {}
     private fun buttonResultClicked(view: View) {}
+}
+
+fun String.isNumber(): Boolean {
+    return try {
+        this.toBigInteger()
+        true
+    } catch (e: NumberFormatException) {
+        false
+    }
 }
