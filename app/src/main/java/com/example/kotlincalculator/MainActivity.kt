@@ -122,9 +122,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun buttonClearClicked(view: View) {}
+    private fun buttonClearClicked(view: View) {
+        textViewResult.text = ""
+        textViewExpression.text = ""
+        isOperator = false
+        hasOperator = false
+    }
+
     private fun buttonHistoryClicked(view: View) {}
-    private fun buttonResultClicked(view: View) {}
+
+    private fun buttonResultClicked(view: View) {
+        val expressions = textViewExpression.text.split(" ")
+
+        if (textViewExpression.text.isEmpty() || expressions.size == 1) {
+            return
+        }
+
+        if (expressions.size != 3 && hasOperator) {
+            Toast.makeText(this, "It's not a complete formula", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (expressions[0].isNumber().not() || expressions[2].isNumber().not()) {
+            Toast.makeText(this, "An error occurred", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val expressionText = textViewExpression.text.toString()
+        val resultText = calculateExpression()
+
+        textViewResult.text = ""
+        textViewExpression.text = resultText
+
+        isOperator = false
+        hasOperator = false
+    }
 }
 
 fun String.isNumber(): Boolean {
