@@ -157,6 +157,9 @@ class MainActivity : AppCompatActivity() {
         isOperator = false
         hasOperator = false
     }
+
+    fun closeHistoryLayout(view: View) {}
+    fun clearHistory(view: View) {}
 }
 
 fun String.isNumber(): Boolean {
