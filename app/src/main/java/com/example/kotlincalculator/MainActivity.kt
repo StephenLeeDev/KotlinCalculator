@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     private val textViewResult: TextView by lazy {
         findViewById<TextView>(R.id.textViewResult)
+    }
+
+    private val constraintLayoutHistory: ConstraintLayout by lazy {
+        findViewById<ConstraintLayout>(R.id.constraintLayoutHistory)
     }
 
     private var isOperator = false
@@ -129,8 +135,6 @@ class MainActivity : AppCompatActivity() {
         hasOperator = false
     }
 
-    private fun buttonHistoryClicked(view: View) {}
-
     private fun buttonResultClicked(view: View) {
         val expressions = textViewExpression.text.split(" ")
 
@@ -158,7 +162,14 @@ class MainActivity : AppCompatActivity() {
         hasOperator = false
     }
 
-    fun closeHistoryLayout(view: View) {}
+    private fun buttonHistoryClicked(view: View) {
+        constraintLayoutHistory.isVisible = true
+    }
+
+    fun closeHistoryLayout(view: View) {
+        constraintLayoutHistory.isVisible = false
+    }
+
     fun clearHistory(view: View) {}
 }
 
