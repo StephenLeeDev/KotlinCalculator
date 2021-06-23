@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class History(
+data class HistoryModel(
         @PrimaryKey
         val uid: Int?,
         @ColumnInfo(name = "expression")
