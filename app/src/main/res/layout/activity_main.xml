@@ -40,12 +40,12 @@
         android:id="@+id/topLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tableLayoutKeyboard"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tableLayoutKeyboard"
-        app:layout_constraintVertical_weight="1"
-        />
+        app:layout_constraintVertical_weight="1" />
 
     <TableLayout
         android:id="@+id/tableLayoutKeyboard"
@@ -343,7 +343,7 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:visibility="gone"
-        tools:visibility="visible"
+        tools:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
